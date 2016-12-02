@@ -127,7 +127,7 @@ function runPinger(endpoint, interval, callback) {
     setInterval(function () {
         const msg = moment.utc().toISOString() + '\t' + hostname + '\t' + count++;
 
-        client.send(msg, 0, msg.length, port, address, function (err) {
+        client.send(new Buffer(msg), 0, msg.length, port, address, function (err) {
             if (err) {
                 callback('send-failed', endpoint);
             }
